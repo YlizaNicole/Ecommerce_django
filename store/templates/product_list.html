@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>🛒 My Online Store</h1>
+    </header>
+
+    <main>
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h2>{{ product.name }}</h2>
+                    <p class="price">₱{{ product.price }}</p>
+                    <p class="desc">{{ product.description|truncatewords:20 }}</p>
+                    <button>Add to Cart</button>
+                </div>
+            {% empty %}
+                <p>No products available.</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
